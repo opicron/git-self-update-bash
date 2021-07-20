@@ -34,4 +34,4 @@ self_update() {
     echo "Already the latest version."
 }
 self_update
-echo “some code”
+echo "some code2"
