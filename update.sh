@@ -9,7 +9,7 @@ ARGS=( "$@" )                                  # fixed to make array of args (se
 
 self_update() {
     cd "$SCRIPTPATH"
-    timeout 2s git fetch --quiet
+    timeout 1s git fetch --quiet
 
                                                # in the next line
                                                # 1. added double-quotes (see below)
@@ -17,7 +17,7 @@ self_update() {
                                                # git-diff will check only script
                                                # file
 
-    timeout 2s git diff --quiet --exit-code "origin/main" "$SCRIPTFILE"
+    timeout 1s git diff --quiet --exit-code "origin/main" "$SCRIPTFILE"
     [ $? -eq 1 ] && {
         #echo "Found a new version of me, updating myself..."
         if [ -n "$(git status --porcelain)" ];  # opposite is -z
