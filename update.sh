@@ -17,7 +17,7 @@ self_update() {
                                                # 2. removed grep expression so
                                                # git-diff will check only script
                                                # file
-    [ -n "$(git diff --name-only "opicron/git-self-update-bash/$BRANCH" "$SCRIPTFILE")" ] && {
+    [ -n "$(git diff --name-only "origin/$BRANCH" "$SCRIPTFILE")" ] && {
         echo "Found a new version of me, updating myself..."
         git pull --force
         git checkout "$BRANCH"
