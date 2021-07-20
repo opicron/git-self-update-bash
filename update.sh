@@ -9,7 +9,7 @@ ARGS=( "$@" )                                  # fixed to make array of args (se
 
 self_update() {
     cd "$SCRIPTPATH"
-    #timeout 2s git fetch --quiet
+    timeout 2s git fetch --quiet
 
                                                # in the next line
                                                # 1. added double-quotes (see below)
