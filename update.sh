@@ -6,7 +6,8 @@ SCRIPTFILE="$(basename "$SCRIPT")"             # get name of the file (not full 
 SCRIPTPATH="$(dirname "$SCRIPT")"
 SCRIPTNAME="$0"
 ARGS=( "$@" )                                  # fixed to make array of args (see below)
-BRANCH="master"
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+UPSTREAM=$(git rev-parse --abbrev-ref --symbolic-full-name @{upstream})
 
 self_update() {
     cd "$SCRIPTPATH"
