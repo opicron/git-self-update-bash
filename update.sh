@@ -1,6 +1,6 @@
 #!/bin/bash
                                                # Here I remark changes
-##
+###
 SCRIPT="$(readlink -f "$0")"
 SCRIPTFILE="$(basename "$SCRIPT")"             # get name of the file (not full path)
 SCRIPTPATH="$(dirname "$SCRIPT")"
@@ -16,7 +16,9 @@ self_update() {
                                                # 2. removed grep expression so
                                                # git-diff will check only script
                                                # file
-    [ -n "$(git diff --name-only "origin/main" "$SCRIPTFILE" --quiet)" ] && {
+
+    git diff --name-only --quiet "origin/main" "$SCRIPTFILE"
+    [ $? -eq 1 ] && {
         #echo "Found a new version of me, updating myself..."
         git stash push -m 'local changes stashed before self update' --quiet
         git pull --force --quiet
