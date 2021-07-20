@@ -1,0 +1,1 @@
+# git-self-update-bash
