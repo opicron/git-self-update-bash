@@ -9,19 +9,19 @@ ARGS=( "$@" )                                  # fixed to make array of args (se
 
 self_update() {
     cd "$SCRIPTPATH"
-    git fetch
+    git fetch --quiet
 
                                                # in the next line
                                                # 1. added double-quotes (see below)
                                                # 2. removed grep expression so
                                                # git-diff will check only script
                                                # file
-    [ -n "$(git diff --name-only "origin/main" "$SCRIPTFILE")" ] && {
+    [ -n "$(git diff --name-only "origin/main" "$SCRIPTFILE")"] && {
         #echo "Found a new version of me, updating myself..."
-        git stash push -m 'local changes stashed before self update' --quiet >/dev/null 2>&1
-        git pull --force --quiet >/dev/null 2>&1
-        git checkout main --quiet >/dev/null 2>&1
-        git pull --force --quiet >/dev/null 2>&1
+        git stash push -m 'local changes stashed before self update' --quiet
+        git pull --force --quiet
+        git checkout main --quiet
+        git pull --force --quiet
         #echo "Running the new version..."
         cd -                                   # return to original working dir
         exec "$SCRIPTNAME" "${ARGS[@]}"
