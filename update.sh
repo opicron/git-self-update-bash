@@ -16,7 +16,7 @@ self_update() {
                                                # 2. removed grep expression so
                                                # git-diff will check only script
                                                # file
-    [ -n "$(git diff --name-only "origin/main" "$SCRIPTFILE")"] && {
+    [ -n "$(git diff --name-only "origin/main" "$SCRIPTFILE")" ] && {
         #echo "Found a new version of me, updating myself..."
         git stash push -m 'local changes stashed before self update' --quiet
         git pull --force --quiet
