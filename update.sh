@@ -1,6 +1,6 @@
 #!/bin/bash
                                                # Here I remark changes
-#
+
 SCRIPT="$(readlink -f "$0")"
 SCRIPTFILE="$(basename "$SCRIPT")"             # get name of the file (not full path)
 SCRIPTPATH="$(dirname "$SCRIPT")"
