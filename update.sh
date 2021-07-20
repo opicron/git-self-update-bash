@@ -6,7 +6,6 @@ SCRIPTFILE="$(basename "$SCRIPT")"             # get name of the file (not full 
 SCRIPTPATH="$(dirname "$SCRIPT")"
 SCRIPTNAME="$0"
 ARGS=( "$@" )                                  # fixed to make array of args (see below)
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
 UPSTREAM=$(git rev-parse --abbrev-ref --symbolic-full-name @{upstream})
 
 self_update() {
@@ -18,7 +17,7 @@ self_update() {
                                                # 2. removed grep expression so
                                                # git-diff will check only script
                                                # file
-    [ -n "$(git diff --name-only "origin/$BRANCH" "$SCRIPTFILE")" ] && {
+    [ -n "$(git diff --name-only "origin/main" "$SCRIPTFILE")" ] && {
         echo "Found a new version of me, updating myself..."
         git stash push -m 'local changes stashed before self update'
         git pull --force
