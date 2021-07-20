@@ -17,7 +17,7 @@ self_update() {
                                                # git-diff will check only script
                                                # file
 
-    git diff --name-only --quiet "origin/main" "$SCRIPTFILE"
+    git diff --name-only --quiet --exit-code "origin/main" "$SCRIPTFILE"
     [ $? -eq 1 ] && {
         #echo "Found a new version of me, updating myself..."
         if [ -n "$(git status --porcelain)" ];  # opposite is -z
