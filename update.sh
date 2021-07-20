@@ -20,7 +20,10 @@ self_update() {
     git diff --name-only --quiet "origin/main" "$SCRIPTFILE"
     [ $? -eq 1 ] && {
         #echo "Found a new version of me, updating myself..."
-        git stash push -m 'local changes stashed before self update' --quiet
+        if [ -n "$(git status --porcelain)" ];  # opposite is -z
+        then 
+            git stash push -m 'local changes stashed before self update' --quiet
+        fi
         git pull --force --quiet
         git checkout main --quiet
         git pull --force --quiet
