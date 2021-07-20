@@ -6,7 +6,6 @@ SCRIPTFILE="$(basename "$SCRIPT")"             # get name of the file (not full 
 SCRIPTPATH="$(dirname "$SCRIPT")"
 SCRIPTNAME="$0"
 ARGS=( "$@" )                                  # fixed to make array of args (see below)
-UPSTREAM=$(git rev-parse --abbrev-ref --symbolic-full-name @{upstream})
 
 self_update() {
     cd "$SCRIPTPATH"
@@ -18,19 +17,19 @@ self_update() {
                                                # git-diff will check only script
                                                # file
     [ -n "$(git diff --name-only "origin/main" "$SCRIPTFILE")" ] && {
-        echo "Found a new version of me, updating myself..."
+        #echo "Found a new version of me, updating myself..."
         git stash push -m 'local changes stashed before self update'
-        #git pull --force
+        git pull --force
         git checkout main
-        #git pull --force
-        echo "Running the new version..."
+        git pull --force
+        #echo "Running the new version..."
         cd -                                   # return to original working dir
         exec "$SCRIPTNAME" "${ARGS[@]}"
 
         # Now exit this old instance
         exit 1
     }
-    echo "Already the latest version."
+    #echo "Already the latest version."
 }
 self_update
 echo "some code2"
