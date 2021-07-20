@@ -8,6 +8,9 @@ SCRIPTNAME="$0"
 ARGS=( "$@" )                                  # fixed to make array of args (see below)
 
 self_update() {
+    [ "$UPDATE_GUARD" ] && return
+    export UPDATE_GUARD=YES
+    
     cd "$SCRIPTPATH"
     timeout 1s git fetch --quiet
 
