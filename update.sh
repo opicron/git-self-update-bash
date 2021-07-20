@@ -18,10 +18,10 @@ self_update() {
                                                # file
     [ -n "$(git diff --name-only "origin/main" "$SCRIPTFILE")" ] && {
         #echo "Found a new version of me, updating myself..."
-        git stash push -m 'local changes stashed before self update' --quiet 2>&1
-        git pull --force --quiet 2>&1
-        git checkout main --quiet 2>&1
-        git pull --force --quiet 2>&1
+        git stash push -m 'local changes stashed before self update' --quiet >/dev/null 2>&1
+        git pull --force --quiet >/dev/null 2>&1
+        git checkout main --quiet >/dev/null 2>&1
+        git pull --force --quiet >/dev/null 2>&1
         #echo "Running the new version..."
         cd -                                   # return to original working dir
         exec "$SCRIPTNAME" "${ARGS[@]}"
