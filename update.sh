@@ -28,7 +28,7 @@ self_update() {
         git checkout main --quiet
         git pull --force --quiet
         #echo "Running the new version..."
-        #cd -                                   # return to original working dir
+        cd - > /dev/null                        # return to original working dir
         exec "$SCRIPTNAME" "${ARGS[@]}"
 
         # Now exit this old instance
